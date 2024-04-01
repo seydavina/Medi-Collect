@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
+            $table->timestamp('scheduled_at')->nullable();
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');
             $table->foreignId('medecin_id')->constrained()->onDelete('cascade');
             $table->timestamps();
