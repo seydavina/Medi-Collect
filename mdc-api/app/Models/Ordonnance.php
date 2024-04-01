@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Medicament;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ordonnance extends Model
 {
@@ -12,6 +13,17 @@ class Ordonnance extends Model
         'numero',
         'datePrescription'
     ];
+
+    public function medicaments()
+    {
+        return $this->belongsToMany(
+            Medicament::class,
+            'ordonnance_medicament',
+            'ordonnance_id',
+            'medicament_id'
+        )
+            ->withPivot('quantite');
+    }
 
     use HasFactory;
 }
